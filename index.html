@@ -15,13 +15,13 @@
     <meta property="og:url" content="https://java-and-lua.world/">
     <meta property="og:title" content="Java & Lua's Hamster World">
     <meta property="og:description" content="Meet the fastest Roborovski duo! Watch Java and Lua's daily adventures and snack sessions.">
-    <meta property="og:image" content="https://hamster.kristo.ca/lua1.png">
+    <meta property="og:image" content="https://kristo.ca/lua1.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:title" content="Java & Lua's Hamster World">
     <meta property="twitter:description" content="Meet the fastest Roborovski duo! Watch Java and Lua's daily adventures.">
-    <meta property="twitter:image" content="https://hamster.kristo.ca/lua1.png">
+    <meta property="twitter:image" content="https://kristo.ca/lua1.png">
 
     <!-- Favicon (Emoji as Favicon) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐹</text></svg>">
@@ -138,6 +138,12 @@
             opacity: 1;
             visibility: visible;
         }
+
+        /* Image sizing utility */
+        .hamster-img {
+            object-fit: cover;
+            object-position: center;
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -182,7 +188,7 @@
             </div>
             <div class="relative fade-in">
                 <div class="w-full h-96 hamster-gradient rounded-3xl overflow-hidden shadow-2xl rotate-2 transform transition hover:rotate-0">
-                    <img src="https://hamster.kristo.ca/lua2.png">
+                    <img src="https://kristo.ca/lua1.png" alt="Java and Lua" class="w-full h-full hamster-img mix-blend-overlay" onerror="this.src='https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&q=80&w=800'">
                 </div>
                 <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl flex items-center space-x-3">
                     <div class="bg-purple-100 p-2 rounded-full animate-bounce">🐹</div>
@@ -254,16 +260,16 @@
             <h2 class="text-4xl font-bold mb-12 text-center">Snapshot Moments</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div class="overflow-hidden rounded-2xl shadow-md group">
-                    <img src="https://hamster.kristo.ca/lua3.png" alt="Java Sleeping">
+                    <img src="https://kristo.ca/lua1.png" onerror="this.src='https://kristo.ca/lua1.png'" class="w-full h-64 hamster-img group-hover:scale-110 transition duration-500" alt="Java and Lua">
                 </div>
                 <div class="overflow-hidden rounded-2xl shadow-md group">
-                    <img src="https://images.unsplash.com/photo-1676918555382-fcd06a483e25?auto=format&fit=crop&q=80&w=400" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500" alt="Lua Eating">
+                    <img src="https://kristo.ca/lua2.png" onerror="this.src='https://kristo.ca/lua2.png'" class="w-full h-64 hamster-img group-hover:scale-110 transition duration-500" alt="Lua Snapshot">
                 </div>
                 <div class="overflow-hidden rounded-2xl shadow-md group">
-                    <img src="https://hamster.kristo.ca/lua2.png" alt="Java and Lua together">
+                    <img src="https://kristo.ca/lua3.png" onerror="this.src='https://kristo.ca/lua3.png'" class="w-full h-64 hamster-img group-hover:scale-110 transition duration-500" alt="Java Snapshot">
                 </div>
                 <div class="overflow-hidden rounded-2xl shadow-md group">
-                    <img src="https://hamster.kristo.ca/lua1.png" alt="Hamster in wheel">
+                    <img src="https://images.unsplash.com/photo-1501472312651-726afe119ff1?auto=format&fit=crop&q=80&w=400" class="w-full h-64 hamster-img group-hover:scale-110 transition duration-500" alt="Hamster in wheel">
                 </div>
             </div>
         </div>
@@ -300,7 +306,6 @@
 
         async function fetchVideoMeta(id) {
             try {
-                // Using YouTube's OEmbed API
                 const response = await fetch(`https://noembed.com/embed?url=https://www.youtube.com/watch?v=${id}`);
                 const data = await response.json();
                 return {
@@ -343,11 +348,9 @@
             document.getElementById('videos').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Initialize Page
         window.addEventListener('DOMContentLoaded', () => {
             loadVideos();
 
-            // Scroll animations
             const observerOptions = { threshold: 0.15 };
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -359,7 +362,6 @@
 
             document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-            // Back to top logic
             const btt = document.getElementById('backToTop');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 500) {
